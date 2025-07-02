@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KSMI Student Digital Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #000;
+      --card-bg: #fff;
+      --header-bg: #003366;
+      --footer-bg: #002244;
+      --footer-text: #fff;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #fff;
+      --card-bg: #1f1f1f;
+      --header-bg: #222;
+      --footer-bg: #111;
+      --footer-text: #ddd;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .toggle-btn {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    body.dark .toggle-btn {
+      background-color: #444;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 14px;
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      border-bottom: 2px solid var(--text-color);
+      padding-bottom: 5px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      width: 100%;
+      height: 350px;
+      background-image: url('https://media.istockphoto.com/id/1349104991/photo/e-learning-online-education-concept.jpg?s=2048x2048&w=is&k=20&c=aHprwww82c4_NMRYQ3om3SRSCq5atC-opaQSIbLaYRw=');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Director Section */
+    .director-section {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .director-section img {
+      width: 250px;
+      height: 250px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .director-section .text {
+      flex: 1;
+    }
+
+    /* Modal */
+    #membershipModal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      color: var(--text-color);
+      width: 90%;
+      max-width: 500px;
+      margin: 80px auto;
+      padding: 30px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .modal-content th, .modal-content td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    .modal-content thead tr {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    footer .social-icons a {
+      margin: 0 10px;
+      color: var(--footer-text);
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    footer p {
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>📚 KSMI Student Digital Library</h1>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+  </header>
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>Welcome to KSMI Digital Library</h1>
+      <p>Empowering Students with Knowledge & Technology</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Features -->
+    <h2>📌 Library Features</h2>
+    <div class="grid">
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="WiFi"><h3>Free Wi-Fi</h3><p>High-speed internet access for all students.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/21/21601.png" alt="Newspaper"><h3>Daily Newspaper</h3><p>Stay updated with national and global news.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2222/2222788.png" alt="Silent Zone"><h3>Silent Environment</h3><p>Peaceful study space with no disturbances.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/831/831682.png" alt="AC & Fan"><h3>AC & Fans</h3><p>Comfortable temperature all year round.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Clean Desk"><h3>Clean Desks</h3><p>Organized and hygienic reading tables.</p></div>
+    </div>
+
+    <!-- Membership Button -->
+    <div style="text-align: center; margin: 40px 0;">
+      <button onclick="openPopup()" style="padding: 10px 20px; font-size: 16px; border: none; background-color: #003366; color: white; border-radius: 6px; cursor: pointer;">
+        💼 View Membership Plans
+      </button>
+    </div>
+
+    <!-- Membership Modal -->
+    <div id="membershipModal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closePopup()">❌</span>
+        <h2>📋 Membership Plans</h2>
+        <table>
+          <thead><tr><th>Plan</th><th>Price</th><th>Access (hrs)</th></tr></thead>
+          <tbody>
+            <tr><td>1.</td><td>₹300</td><td>3 hours</td></tr>
+            <tr><td>2.</td><td>₹500</td><td>6 hours</td></tr>
+            <tr><td>3.</td><td>₹700</td><td>9 hours</td></tr>
+            <tr><td>4.</td><td>₹900</td><td>12 hours</td></tr>
+            <tr><td>5.</td><td>₹1100</td><td>15 hours</td></tr>
+            <tr><td>6.</td><td>₹1500</td><td>24 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Director -->
+    <h2>👤 Library Director</h2>
+    <div class="director-section">
+      <img src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Director">
+      <div class="text">
+        <h3>Mr. Imran Khan</h3>
+        <p>Director of Library Services at KSMI. Passionate about digital learning, research support, and providing an accessible and high-tech environment for every student. He is committed to making KSMI a model digital library nationwide.</p>
+      </div>
+    </div>
+
+    <!-- Team Members -->
+    <h2>👨‍💻 Library Team Members</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Member 1">
+        <h3>Mr. Lavkush Patel</h3>
+        <p>Library Assistant at KSMI. Supports daily operations, student queries, and manages digital resources efficiently.</p>
+      </div>
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Member 2">
+        <h3>Mr. Avinash Pandey</h3>
+        <p>Student Coordinator. Ensures a smooth experience for students and organizes digital resource access schedules.</p>
+      </div>
+    </div>
+
+    <!-- Branch Section -->
+<h2>🏢 Our Library Branches</h2>
+<div class="grid">
+  <div class="card">
+    <h3>KSMI 1.0 - Main Branch</h3>
+    <p>📍Shivrampur chitrakoot near in Sarswati School ,210205</p>
+  </div>
+  <div class="card">
+    <h3>KSMI 2.0 </h3>
+    <p>📍 Shivrampur near in K.N. Shukla hospital </p>
+  </div>
+  <div class="card">
+    <h3>KSMI 3.0 </h3>
+    <p>📍 NH-76 Near in Kali devi temple </p>
+  </div>
+</div>
+
+
+    <!-- Success Stories -->
+    <h2>🎉 Our Success Stories</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Student 1">
+        <h3>Ramesh Yadav</h3>
+        <p>Selected in ISRO as Junior Scientist – used KSMI for daily UPSC & tech prep.</p>
+      </div>
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Student 2">
+        <h3>Neha Verma</h3>
+        <p>Placed at Google as Software Engineer – used our premium plan regularly.</p>
+      </div>
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Student 3">
+        <h3>Abhishek Sharma</h3>
+        <p>Cleared GATE with AIR 45 – used our silent reading hall for 10+ months.</p>
+      </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#">📘</a>
+      <a href="#">🐦</a>
+      <a href="#">📸</a>
+      <a href="#">💼</a>
+    </div>
+    <p>📞 +91-9876543210 | 📧 ksmi.library@college.edu</p>
+    <p>© 2025 KSMI Digital Library. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.toggle-btn');
+      btn.innerText = document.body.classList.contains('dark') ? "☀️ Light Mode" : "🌙 Dark Mode";
+    }
+
+    function openPopup() {
+      document.getElementById("membershipModal").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("membershipModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
