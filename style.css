@@ -1,0 +1,246 @@
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #000;
+  --card-bg: #fff;
+  --header-bg: #003366;
+  --footer-bg: #002244;
+  --footer-text: #fff;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #fff;
+  --card-bg: #1f1f1f;
+  --header-bg: #222;
+  --footer-bg: #111;
+  --footer-text: #ddd;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: 0.3s;
+}
+
+header {
+  background-color: var(--header-bg);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.toggle-btn {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+body.dark .toggle-btn {
+  background-color: #444;
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 14px;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 2px solid var(--text-color);
+  padding-bottom: 5px;
+}
+
+/* Hero Banner */
+.hero-banner {
+  width: 100%;
+  height: 350px;
+  background-image: url('https://media.istockphoto.com/id/1349104991/photo/e-learning-online-education-concept.jpg?s=2048x2048&w=is&k=20&c=aHprwww82c4_NMRYQ3om3SRSCq5atC-opaQSIbLaYRw=');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Director Section */
+.director-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.director-section img {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.director-section .text {
+  flex: 1;
+}
+
+/* Modal */
+#membershipModal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background: var(--card-bg);
+  color: var(--text-color);
+  width: 90%;
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.modal-content th, .modal-content td {
+  text-align: left;
+  padding: 8px;
+}
+
+.modal-content thead tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+footer .social-icons a {
+  margin: 0 10px;
+  color: var(--footer-text);
+  font-size: 22px;
+  text-decoration: none;
+}
+
+footer p {
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+
+/* Membership button styling (used in HTML) */
+.membership-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #003366;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

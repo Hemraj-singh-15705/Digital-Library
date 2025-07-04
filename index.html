@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KSMI Student Digital Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>📚 KSMI Student Digital Library</h1>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+  </header>
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>Welcome to KSMI Digital Library</h1>
+      <p>Empowering Students with Knowledge & Technology</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Features -->
+    <h2>📌 Library Features</h2>
+    <div class="grid">
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="WiFi"><h3>Free Wi-Fi</h3><p>High-speed internet access for all students.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/21/21601.png" alt="Newspaper"><h3>Daily Newspaper</h3><p>Stay updated with national and global news.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2222/2222788.png" alt="Silent Zone"><h3>Silent Environment</h3><p>Peaceful study space with no disturbances.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/831/831682.png" alt="AC & Fan"><h3>AC & Fans</h3><p>Comfortable temperature all year round.</p></div>
+      <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Clean Desk"><h3>Clean Desks</h3><p>Organized and hygienic reading tables.</p></div>
+    </div>
+
+    <!-- Membership Button -->
+    <div style="text-align: center; margin: 40px 0;">
+      <button onclick="openPopup()" class="membership-btn">
+        💼 View Membership Plans
+      </button>
+    </div>
+
+    <!-- Membership Modal -->
+    <div id="membershipModal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closePopup()">❌</span>
+        <h2>📋 Membership Plans</h2>
+        <table>
+          <thead><tr><th>Plan</th><th>Price</th><th>Access (hrs)</th></tr></thead>
+          <tbody>
+            <tr><td>1.</td><td>₹300</td><td>3 hours</td></tr>
+            <tr><td>2.</td><td>₹500</td><td>6 hours</td></tr>
+            <tr><td>3.</td><td>₹700</td><td>9 hours</td></tr>
+            <tr><td>4.</td><td>₹900</td><td>12 hours</td></tr>
+            <tr><td>5.</td><td>₹1100</td><td>15 hours</td></tr>
+            <tr><td>6.</td><td>₹1500</td><td>24 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Director -->
+    <h2>👤 Library Director</h2>
+    <div class="director-section">
+      <img src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Director">
+      <div class="text">
+        <h3>Mr. Imran Khan</h3>
+        <p>Director of Library Services at KSMI. Passionate about digital learning, research support, and providing an accessible and high-tech environment for every student. He is committed to making KSMI a model digital library nationwide.</p>
+      </div>
+    </div>
+
+    <!-- Team Members -->
+    <h2>👨‍💻 Library Team Members</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Member 1">
+        <h3>Mr. Lavkush Patel</h3>
+        <p>Library Assistant at KSMI. Supports daily operations, student queries, and manages digital resources efficiently.</p>
+      </div>
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Member 2">
+        <h3>Mr. Avinash Pandey</h3>
+        <p>Student Coordinator. Ensures a smooth experience for students and organizes digital resource access schedules.</p>
+      </div>
+    </div>
+
+    <!-- Branch Section -->
+    <h2>🏢 Our Library Branches</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>KSMI 1.0 - Main Branch</h3>
+        <p>📍Shivrampur chitrakoot near in Sarswati School ,210205</p>
+      </div>
+      <div class="card">
+        <h3>KSMI 2.0 </h3>
+        <p>📍 Shivrampur near in K.N. Shukla hospital </p>
+      </div>
+      <div class="card">
+        <h3>KSMI 3.0 </h3>
+        <p>📍 NH-76 Near in Kali devi temple </p>
+      </div>
+    </div>
+
+    <!-- Success Stories -->
+    <h2>🎉 Our Success Stories</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Student 1">
+        <h3>Ramesh Yadav</h3>
+        <p>Selected in ISRO as Junior Scientist – used KSMI for daily UPSC & tech prep.</p>
+      </div>
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Student 2">
+        <h3>Neha Verma</h3>
+        <p>Placed at Google as Software Engineer – used our premium plan regularly.</p>
+      </div>
+      <div class="card">
+        <img class="profile-img" src="https://t4.ftcdn.net/jpg/00/65/77/27/240_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Student 3">
+        <h3>Abhishek Sharma</h3>
+        <p>Cleared GATE with AIR 45 – used our silent reading hall for 10+ months.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#">📘</a>
+      <a href="#">🐦</a>
+      <a href="#">📸</a>
+      <a href="#">💼</a>
+    </div>
+    <p>📞 +91-9876543210 | 📧 ksmi.library@college.edu</p>
+    <p>© 2025 KSMI Digital Library. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
